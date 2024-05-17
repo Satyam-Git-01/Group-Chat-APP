@@ -21,7 +21,7 @@
           <div class="slider-tab"></div>
         </div>
         <div class="form-inner">
-          <form action="/user/login" method="post" class="login">
+          <form class="login" onsubmit="return false;">
             <div class="field">
               <input type="text"  name="email" placeholder="Email Address" required id="loginEmail"/>
             </div>
@@ -31,7 +31,7 @@
             <div class="pass-link"><a href="#">Forgot password?</a></div>
             <div class="field btn">
               <div class="btn-layer"></div>
-              <input type="submit" value="Login" />
+              <input type="submit" value="Login" id="loginBtn" />
             </div>
             <div class="signup-link">
               Not a member? <a href="">Signup now</a>
@@ -58,6 +58,12 @@
         </div>
       </div>
     </div>
+    <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.2/axios.min.js"
+    integrity="sha512-QTnb9BQkG4fBYIt9JGvYmxPpd6TBeKp6lsUrtiVQsrJ9sb33Bn9s0wMQO9qVBFbPX3xHRAsBHvXlcsrnJjExjg=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  ></script>
     <script src="/js/signup.js"></script>
   </body>
 </html>

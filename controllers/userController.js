@@ -1,6 +1,10 @@
 const path = require("node:path");
 const bcrypt = require("bcrypt");
 const UserModel = require("../models/userModel");
+const jwt = require("jsonwebtoken");
+const generateAccessToken = (id) => {
+  return jwt.sign({ userId: id }, process.env.JWT_TOKEN);
+};
 const getSignUpPage = (req, res, next) => {
   res.sendFile(path.join(__dirname, "../", "public", "views", "signup.html"));
 };
@@ -9,13 +13,20 @@ const handleLogin = async (req, res, next) => {
   try {
     const { email, password } = req.body;
     const user = await UserModel.findOne({
-      where: { email: email},
+      where: { email: email },
     });
     const result = await bcrypt.compare(password, user.password);
     if (result) {
-      res.status(200).json({ success: true, message: "Login Successfull" });
+      res.status(200).json({
+        success: true,
+        message: "Login Successfull",
+        token: generateAccessToken(user.id),
+      });
     } else {
-      res.status(400).json({ success: false, message: "Credentials Error Enter Correct Data!" });
+      res.status(400).json({
+        success: false,
+        message: "Credentials Error Enter Correct Data!",
+      });
     }
   } catch (err) {
     res.status(500).json({ success: false, message: "Login Failed" });
