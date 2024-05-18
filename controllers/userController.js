@@ -35,14 +35,23 @@ const handleLogin = async (req, res, next) => {
 
 const handleSignUp = async (req, res, next) => {
   try {
-    const { name, email, phone, password } = req.body;
+    const { username, email, phone, password } = req.body;
+    console.log(req.body);
     const encryptedpassword = await bcrypt.hash(password, 10);
     //console.log(encryptedpassword)
-    await UserModel.create({ name, email, phone, password: encryptedpassword });
+    await UserModel.create({
+      name: username,
+      email,
+      phone,
+      password: encryptedpassword,
+    });
     res
-      .status(201)
-      .json({ success: true, message: "user create successfully" });
+      .status(200)
+      .send(
+        `<script>alert('User Created Successfully!'); window.location.href='/'</script>`
+      );
   } catch (err) {
+    console.log(err);
     res.status(500).json({ success: false, message: "Email already Exists" });
   }
 };

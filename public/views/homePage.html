@@ -6,8 +6,23 @@
     <title>Document</title>
 </head>
 <body>
-    <div>Div for chat</div>
+    <div>
+        <h4>List of Messages</h4>
+        <ul id="messageList"></ul>
+    </div>
 
-    <div>Divs for input message</div>
+    <div>
+        <form onsubmit="return false;">
+            <input id="inputMessage" type="text" required/>
+            <input type="submit" id="sendMessageBtn" value="send">
+        </form>
+    </div>
+    <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.2/axios.min.js"
+    integrity="sha512-QTnb9BQkG4fBYIt9JGvYmxPpd6TBeKp6lsUrtiVQsrJ9sb33Bn9s0wMQO9qVBFbPX3xHRAsBHvXlcsrnJjExjg=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  ></script>
+    <script src="/js/homePage.js"></script>
 </body>
 </html>
