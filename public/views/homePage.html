@@ -1,28 +1,117 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <div>
-        <h4>List of Messages</h4>
-        <ul id="messageList"></ul>
-    </div>
-
-    <div>
-        <form onsubmit="return false;">
-            <input id="inputMessage" type="text" required/>
-            <input type="submit" id="sendMessageBtn" value="send">
-        </form>
-    </div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Group Chat WEBAPP</title>
     <script
+      src="https://kit.fontawesome.com/68a6255ca6.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="/css/home.css" />
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link
+      href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+      rel="stylesheet"
+      id="bootstrap-css"
+    />
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
+      type="text/css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <h5 class="text-center">Chatting is always a fun!</h5>
+      <h3 class="text-center btn btn-primary" id="logoutbtn">Log Out</h3>
+      <div>
+        <form onsubmit="createGroup(event)">
+          <div class="row">
+            <div class="col">
+              <input
+                type="text"
+                class="form-control"
+                id="groupName"
+                name="groupName"
+                placeholder="Group Name"
+                required
+              />
+            </div>
+            <div class="col">
+              <input
+                type="text"
+                class="form-control"
+                id="membersInput"
+                name="membersInput"
+                placeholder="Comma(,) Seperated Emails"
+                required
+              />
+            </div>
+            <div class="col">
+              <button class="btn btn-primary" type="submit" id="createGroupBtn">
+                Create
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="messaging">
+        <div class="inbox_msg">
+          <div class="inbox_people">
+            <div class="headind_srch">
+              <div class="recent_heading">
+                <h4>Groups</h4>
+              </div>
+            </div>
+            <div id="listOfGroups" class="inbox_chat"></div>
+          </div>
+          <div class="mesgs">
+            <div class="msg_history" id="msgHistory">
+              <!-- <div class="incoming_msg">
+              <div class="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
+              <div class="received_msg">
+                <div class="received_withd_msg">
+                  <p>Test which is a new approach to have all
+                    solutions</p>
+                  <span class="time_date"> 11:01 AM    |    June 9</span></div>
+              </div>
+            </div>
+            <div class="outgoing_msg">
+              <div class="sent_msg">
+                <p>Test which is a new approach to have all
+                  solutions</p>
+                <span class="time_date"> 11:01 AM    |    June 9</span> </div>
+            </div> -->
+            </div>
+            <div class="type_msg">
+              <form onsubmit="return false;" class="input_msg_write">
+                <input
+                  id="inputMessage"
+                  type="text"
+                  class="write_msg"
+                  placeholder="Type a message"
+                />
+                <button id="sendMessageBtn" class="msg_send_btn" type="button">
+                  <i class="fa fa-paper-plane-o" aria-hidden="true"></i>
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script
     src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.2/axios.min.js"
     integrity="sha512-QTnb9BQkG4fBYIt9JGvYmxPpd6TBeKp6lsUrtiVQsrJ9sb33Bn9s0wMQO9qVBFbPX3xHRAsBHvXlcsrnJjExjg=="
     crossorigin="anonymous"
     referrerpolicy="no-referrer"
   ></script>
-    <script src="/js/homePage.js"></script>
-</body>
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    const socket = io();
+  </script>
+  <script src="/js/homePage.js"></script>
 </html>

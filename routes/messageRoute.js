@@ -4,6 +4,6 @@ const { handlePostMessage, getAllMessages } = require("../controllers/messageCon
 const authenticate = require("../middlewares/auth");
 
 messageRouter.post("/sendMessage", authenticate, handlePostMessage);
-messageRouter.get('/getAllMessages', authenticate,getAllMessages)
+messageRouter.get('/getAllMessages/:groupId', authenticate,getAllMessages)
 
 module.exports = messageRouter;

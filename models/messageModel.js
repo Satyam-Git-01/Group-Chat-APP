@@ -1,7 +1,7 @@
 const { Sequelize } = require("sequelize");
 const database = require("../services/dbConn");
 
-const MessageModel = database.define("Message", {
+const MessageModel = database.define("messages", {
     messageContent: {
         type: Sequelize.STRING,
         allowNull: false,
