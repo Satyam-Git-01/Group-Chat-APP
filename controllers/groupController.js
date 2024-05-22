@@ -57,11 +57,12 @@ const isAdmin = async (req, res, next) => {
 };
 
 const makeAdmin = (req, res, next) => {
+  console.log("Reached-------------------->>>");
   try {
     console.log(req.body);
     const memberId = req.body.memberId;
     const groupId = req.body.groupId;
-    const res = GroupMemberModel.update(
+    const result = GroupMemberModel.update(
       { isAdmin: true },
       {
         where: {
@@ -70,23 +71,23 @@ const makeAdmin = (req, res, next) => {
         },
       }
     );
+    res.io.emit("admin-made");
+    res.status(200).json({ success: true });
   } catch (err) {
     console.log(err);
   }
 };
 const LeaveGroup = async (req, res, next) => {
   try {
-    ///deleteGroup/:id/:userId
     const groupId = req.params.id;
     const userId = req.params.userId == 0 ? req.user.id : req.params.userId;
-    console.log(groupId + "-----<>" + userId);
     await GroupMemberModel.destroy({
       where: {
         userId: userId,
         groupId: groupId,
       },
     });
-    res.io.emit('left-group');
+    res.io.emit("left-group");
     res.status(200).json({ sucess: true });
   } catch (err) {
     console.log(err);

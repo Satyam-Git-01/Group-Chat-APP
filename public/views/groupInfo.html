@@ -22,30 +22,42 @@
       rel="stylesheet"
     />
   </head>
-  <body>
+  <body class="container">
     <div>
-        <div id="groupName">
-        </div>
+      <div id="groupName" style="margin: 20px"></div>
     </div>
-    <div>
-        <form onsubmit="AddMembers(event)">
-            <label for="membersInput">Members Emails</label>
-            <input type="text" id="membersInput" name="membersInput" placeholder="Comma(,) seperated Emails" required />
-            <button type="submit" id="addMembers">Add</button>
-          </form>
+    <div style="margin-bottom: 20px">
+      <form onsubmit="AddMembers(event)">
+        <div class="row">
+          <div class="col">
+            <input
+              class="form-control"
+              type="text"
+              id="membersInput"
+              name="membersInput"
+              placeholder="Comma(,) seperated Emails"
+              required
+            />
+          </div>
+          <div class="col">
+            <button class="btn btn-primary" type="submit" id="addMembers">
+              Add
+            </button>
+          </div>
+        </div>
+      </form>
     </div>
     <table class="table">
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">Name</th>
-            <th scope="col">isAdmin</th>
-            <th scope="col">Actions</th>
-          </tr>
-        </thead>
-        <tbody id="table_body">
-        </tbody>
-      </table>
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Name</th>
+          <th scope="col">isAdmin</th>
+          <th scope="col">Actions</th>
+        </tr>
+      </thead>
+      <tbody id="table_body"></tbody>
+    </table>
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.2/axios.min.js"
       integrity="sha512-QTnb9BQkG4fBYIt9JGvYmxPpd6TBeKp6lsUrtiVQsrJ9sb33Bn9s0wMQO9qVBFbPX3xHRAsBHvXlcsrnJjExjg=="

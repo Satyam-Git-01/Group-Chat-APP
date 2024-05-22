@@ -37,7 +37,7 @@ const showGroupMemberInfo = (members) => {
     const td2 = document.createElement("td");
     td2.innerHTML = `${member.isAdmin}`;
     const td3 = document.createElement("td");
-    td3.innerHTML = `<button class='btn btn-danger' onclick="deleteFromGroup(event,${member.userId})">Delete Memeber </button> <button class='btn btn-success'>Make Admin</button>`;
+    td3.innerHTML = `<button class='btn btn-danger' onclick="deleteFromGroup(event,${member.userId})">Delete Memeber </button> <button class='btn btn-success' onclick="makeAdmin(event,${member.memberId})">Make Admin</button>`;
     tr.appendChild(th);
     tr.appendChild(td1);
     tr.appendChild(td2);
@@ -47,6 +47,7 @@ const showGroupMemberInfo = (members) => {
 };
 
 const makeAdmin = async (event, memberId) => {
+  console.log("Reached ake admin")
   const groupId = localStorage.getItem("groupId");
   const token = localStorage.getItem("token");
   try {
@@ -88,6 +89,10 @@ const isAdmin = async () => {
 };
 
 socket.on("DoneGroup", () => {
+  window.location.reload("/");
+});
+
+socket.on("admin-made", () => {
   window.location.reload("/");
 });
 
