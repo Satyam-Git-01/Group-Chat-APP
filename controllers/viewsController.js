@@ -5,7 +5,7 @@ const getHomePage = (req, res, next) => {
 
 const getGroupInfoPage = (req, res, next) => {
    res.sendFile(
-    path.join(__dirname, "../", "public", "views", "groupinfo.html")
+    path.join(__dirname, "../", "public", "views", "groupInfo.html")
   );
 };
 
