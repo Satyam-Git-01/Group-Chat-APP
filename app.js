@@ -27,7 +27,6 @@ const userRouter = require("./routes/userRoute");
 const groupRouter = require("./routes/groupRoute");
 
 //Importing Models 
-//checking build
 const User = require("./models/userModel");
 const Message = require("./models/messageModel");
 const Group = require("./models/groupModel");
