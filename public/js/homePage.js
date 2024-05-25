@@ -1,19 +1,35 @@
 const sendMessageBtn = document.getElementById("sendMessageBtn");
 const messgaeInput = document.getElementById("inputMessage");
 
-
-const postMessage = async () => {
-  const messageText = messgaeInput.value;
+const postMessage = async (event) => {
+  const messgaeInput = document.getElementById("inputMessage");
   const token = localStorage.getItem("token");
   const groupId = localStorage.getItem("groupId");
-  const result = axios.post(
-    "http://localhost:4800/message/sendMessage",
-    { messageText, groupId },
-    { headers: { Authorization: token } }
-  );
-  socket.emit("sendMessage", messageText);
+  if (messgaeInput.type == "text") {
+    const messageText = messgaeInput.value;
+    const result = axios.post(
+      "http://localhost:4800/message/sendMessage",
+      { messageText, groupId },
+      { headers: { Authorization: token } }
+    );
+  } else {
+    const file = messgaeInput.files[0];
+    const formData = new FormData();
+    formData.append("image", file);
 
-  // window.location.reload('/')
+    formData.append("token", token);
+    formData.append("groupId", groupId);
+    const result = axios.post(
+      "http://localhost:4800/message/sendMessage",
+      formData,
+      {
+        headers: {
+          "Content-Type": "multipart/form-data",
+          Authorization: token,
+        },
+      }
+    );
+  }
 };
 
 const onGroupView = async (id) => {
@@ -29,11 +45,19 @@ const showGroupMessages = (messages) => {
   messages.forEach((item) => {
     const div = document.createElement("div");
     div.classList.add("incoming_msg");
-    div.innerHTML = `<div class="received_msg">
+    if (item.messageContent.includes("http")) {
+      div.innerHTML = `<div class="received_msg">
       <div class="received_withd_msg">
-      <span class="time_date">${item.senderName}</span>
+      <span class="time_date">${item.senderName}</span>      
+        <img src='${item.messageContent}' width="40px;" height="40px;"></img>
+        </div> </div>`;
+    } else {
+      div.innerHTML = `<div class="received_msg">
+      <div class="received_withd_msg">
+      <span class="time_date">${item.senderName}</span>      
         <p>${item.messageContent}</p>
         </div> </div>`;
+    }
     msgHistoryDiv.appendChild(div);
   });
 };
@@ -155,7 +179,6 @@ const logout = () => {
 
 const logoutBtn = document.getElementById("logoutbtn");
 logoutBtn.addEventListener("click", logout);
-//function for listing groups
 const showGroups = (groups) => {
   const groupList = document.getElementById("listOfGroups");
   groupList.textContent = "";
@@ -175,6 +198,6 @@ const showGroups = (groups) => {
   localStorage.setItem("groupId", 1);
 };
 
-sendMessageBtn.addEventListener("click", postMessage);
+sendMessageBtn.addEventListener("click", () => postMessage(event));
 document.addEventListener("DOMContentLoaded", getAllGroupsForUser);
 document.addEventListener("DOMContentLoaded", () => getAllMessages(1));

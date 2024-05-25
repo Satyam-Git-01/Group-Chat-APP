@@ -63,9 +63,6 @@ sequelize
 
     io.on("connection", (socket) => {
       console.log("User Connected");
-      socket.on("sendMessage", (message) => {
-        console.log(message);
-      });
     });
   })
   .catch((err) => {

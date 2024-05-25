@@ -49,7 +49,6 @@ const isAdmin = async (req, res, next) => {
         userId: user.id,
       },
     });
-    console.log(result);
     res.send(result);
   } catch (err) {
     console.log(err);

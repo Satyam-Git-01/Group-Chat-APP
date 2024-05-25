@@ -1,5 +1,5 @@
 const { Sequelize } = require("sequelize");
-const { sequelize } = require("../services/dbConn");
+const  sequelize  = require("../services/dbConn");
 
 const ArchieveMessageModel = sequelize.define("archieves", {
   id: {
