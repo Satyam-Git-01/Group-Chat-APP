@@ -57,7 +57,6 @@ const isAdmin = async (req, res, next) => {
 };
 
 const makeAdmin = (req, res, next) => {
-  console.log("Reached-------------------->>>");
   try {
     console.log(req.body);
     const memberId = req.body.memberId;

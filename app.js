@@ -51,6 +51,9 @@ GroupMember.belongsTo(Group);
 Message.belongsTo(Group);
 Message.belongsTo(User);
 
+const job = require("./services/cronService");
+job.start();
+
 sequelize
   .sync()
   .then((response) => {

@@ -1,8 +1,9 @@
 const sendMessageBtn = document.getElementById("sendMessageBtn");
 const messgaeInput = document.getElementById("inputMessage");
+
+
 const postMessage = async () => {
   const messageText = messgaeInput.value;
-  // console.log("Reached");
   const token = localStorage.getItem("token");
   const groupId = localStorage.getItem("groupId");
   const result = axios.post(
@@ -112,6 +113,13 @@ const getAllGroupsForUser = async () => {
   } catch (err) {
     console.log(err);
   }
+};
+
+const attachClick = () => {
+  const attachedBtn = document.getElementById("attchedBtn");
+  const inputTag = document.getElementById("inputMessage");
+  inputTag.removeAttribute("type");
+  inputTag.setAttribute("type", "file");
 };
 
 const getGroupInfoPage = async (event, id) => {
