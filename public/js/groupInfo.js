@@ -10,7 +10,7 @@ const deleteFromGroup = async (event, id) => {
     const token = localStorage.getItem("token");
     const groupId = localStorage.getItem("groupId");
     const result = await axios.delete(
-      `http://localhost:4800/group/deleteGroup/${groupId}/${id}`,
+      `http://13.53.97.38:4800/group/deleteGroup/${groupId}/${id}`,
       {
         headers: {
           Authorization: token,
@@ -52,7 +52,7 @@ const makeAdmin = async (event, memberId) => {
   const token = localStorage.getItem("token");
   try {
     const result = await axios.put(
-      "http://localhost:4800/group/makeAdmin",
+      "http://13.53.97.38:4800/group/makeAdmin",
       { memberId, groupId },
       {
         headers: {
@@ -69,7 +69,7 @@ const isAdmin = async () => {
   const token = localStorage.getItem("token");
   const groupId = localStorage.getItem("groupId");
   const result = await axios.get(
-    `http://localhost:4800/group/isAdmin/${groupId}`,
+    `http://13.53.97.38:4800/group/isAdmin/${groupId}`,
     {
       headers: {
         Authorization: token,
@@ -107,7 +107,7 @@ const AddMembers = async (event) => {
     });
     const token = localStorage.getItem("token");
     const result = await axios.post(
-      "http://localhost:4800/group/addMember",
+      "http://13.53.97.38:4800/group/addMember",
       { groupId, members },
       {
         headers: {
@@ -122,7 +122,7 @@ const AddMembers = async (event) => {
 
 const getGroupInfo = async (id) => {
   try {
-    const result = await axios.get(`http://localhost:4800/group/getInfo/${id}`);
+    const result = await axios.get(`http://13.53.97.38:4800/group/getInfo/${id}`);
     //   console.log(result);
     showGroupInfo(result.data.groupInfo);
     showGroupMemberInfo(result.data.groupMemberInfo);

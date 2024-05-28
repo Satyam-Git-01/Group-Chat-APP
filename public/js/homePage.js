@@ -8,7 +8,7 @@ const postMessage = async (event) => {
   if (messgaeInput.type == "text") {
     const messageText = messgaeInput.value;
     const result = axios.post(
-      "http://localhost:4800/message/sendMessage",
+      "http://13.53.97.38:4800/message/sendMessage",
       { messageText, groupId },
       { headers: { Authorization: token } }
     );
@@ -21,7 +21,7 @@ const postMessage = async (event) => {
     formData.append("token", token);
     formData.append("groupId", groupId);
     const result = axios.post(
-      "http://localhost:4800/message/sendMessage",
+      "http://13.53.97.38:4800/message/sendMessage",
       formData,
       {
         headers: {
@@ -73,7 +73,7 @@ const getAllMessages = async (id) => {
       groupId = id;
     }
     const result = await axios.get(
-      `http://localhost:4800/message/getAllMessages/${groupId}`,
+      `http://13.53.97.38:4800/message/getAllMessages/${groupId}`,
       {
         headers: {
           Authorization: token,
@@ -109,7 +109,7 @@ const createGroup = async (event) => {
     const token = localStorage.getItem("token");
 
     const result = await axios.post(
-      "http://localhost:4800/group/createGroup",
+      "http://13.53.97.38:4800/group/createGroup",
       { name, members },
       {
         headers: {
@@ -128,7 +128,7 @@ const getAllGroupsForUser = async () => {
   try {
     const token = localStorage.getItem("token");
     const result = await axios.get(
-      "http://localhost:4800/group/getAllGroupsForUser",
+      "http://13.53.97.38:4800/group/getAllGroupsForUser",
       {
         headers: {
           Authorization: token,
@@ -162,7 +162,7 @@ const deleteGroup = async (event, id) => {
   try {
     const token = localStorage.getItem("token");
     const result = await axios.delete(
-      `http://localhost:4800/group/deleteGroup/${id}/0`,
+      `http://13.53.97.38:4800/group/deleteGroup/${id}/0`,
       {
         headers: {
           Authorization: token,

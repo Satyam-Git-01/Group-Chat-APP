@@ -27,7 +27,7 @@ const handleLogin = async (event) => {
       password,
     };
     const result = await axios.post(
-      "http://localhost:4800/user/login",
+      "http://13.53.97.38:4800/user/login",
       loginDetails
     );
     localStorage.setItem("token", result.data.token);
