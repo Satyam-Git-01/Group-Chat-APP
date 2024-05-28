@@ -12,6 +12,7 @@ const postMessage = async (event) => {
       { messageText, groupId },
       { headers: { Authorization: token } }
     );
+    messgaeInput.value = "";
   } else {
     const file = messgaeInput.files[0];
     const formData = new FormData();
@@ -29,6 +30,8 @@ const postMessage = async (event) => {
         },
       }
     );
+    messgaeInput.removeAttribute("type");
+    messgaeInput.setAttribute("type", "text");
   }
 };
 

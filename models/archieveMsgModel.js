@@ -1,18 +1,14 @@
 const { Sequelize } = require("sequelize");
-const  sequelize  = require("../services/dbConn");
+const sequelize = require("../services/dbConn");
 
 const ArchieveMessageModel = sequelize.define("archieves", {
-  id: {
-    type: Sequelize.INTEGER,
+  messageContent: {
+    type: Sequelize.STRING,
     allowNull: false,
-    autoIncrement: true,
-    primaryKey: true,
   },
-  name: {
+  senderName: {
     type: Sequelize.STRING,
-  },
-  message: {
-    type: Sequelize.STRING,
+    allowNull: false,
   },
 });
 module.exports = ArchieveMessageModel;
